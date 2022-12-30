@@ -2,34 +2,28 @@ const messageTextBox = document.getElementById('message');
 const translateButton = document.getElementById('translate');
 const translatedMessageTextBox = document.getElementById('translatedMessage');
 
-let message;
-let translatedMessage;
+let message = '';
+let translatedMessage = '';
 
-messageTextBox.addEventListener('change', e => {
+messageTextBox.addEventListener('input', e => {
 	message = e.target.value;
+	translatedMessageTextBox.innerText = '';
 });
 
-const translateMessage = async message => {
-	const url = `https://api.funtranslations.com/translate/minion.json?text=${message}`;
+const translateMessage = () => {};
 
-	try {
-		const res = await fetch(url);
-		return res;
-	} catch (err) {
-		console.log(err);
-	}
-};
+translateButton.addEventListener('click', () => {
+	if (message !== '') {
+		const url = `https://api.funtranslations.com/translate/minion.json?text=${message}`;
 
-translateButton.addEventListener('click', async () => {
-	if (message !== undefined) {
-		translatedMessage = await translateMessage(message);
-		if (translateMessage.status === 400) {
-			translatedMessageTextBox.innerText = translatedMessage;
-		} else if (translatedMessage.status === 429) {
-			alert('Too many attempt,  try after some time');
-		} else {
-			alert('something went wrong');
-		}
+		fetch(url).then(res => res.json()).then(result => {
+			console.log(result.contents);
+			if (result.contents === undefined) {
+				alert(result.error.message);
+			}
+
+			translatedMessageTextBox.innerText = result.contents.translated;
+		});
 	} else {
 		alert('please provide a message');
 	}
