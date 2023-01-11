@@ -9,7 +9,7 @@ A web App which helps users to translate english to banana language which is min
 ![Screenshot from 2023-01-10 23-15-56](https://user-images.githubusercontent.com/90442893/211626021-6d2eb3eb-a61a-4930-a92f-b0d4ad2a2f98.png)
 
 # Problem Statement: 
- - i have to buid a recommendation app [like this ](https://neog.camp/guide/markSix#marksix)
+ - i have to buid a  Minion Talk App [like this ](https://neog.camp/guide/markSix#marksix)
 
 
 # How to use:
